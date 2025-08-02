@@ -1,4 +1,4 @@
-name : Deploy on EC2 instance[Kamlesh Github Action]
+name : main
 on :
   push :
     branches:
@@ -6,7 +6,7 @@ on :
 
 jobs:
   build-deploy:
-    runs-on : Ubuntu:latest
+    runs-on : Ubuntu-latest
 
     steps :
     - name : Checkout
