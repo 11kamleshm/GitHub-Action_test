@@ -19,12 +19,14 @@ jobs:
 
     - name : Copy project file on EC2
       run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-            rm -rf my-node-app
-            git clone https://github.com/11kamleshm/Kamlesh_Task1.git my-node-app
-            cd my-node-app
-            npm install
-            pm2 kill || true
-            pm2 start app.js --name my-node-app --run preview
-            pm2 save
+          echo "$EC2_SSH_KEY" > ec2_key.pem
+          chmod 600 ec2_key.pem
+          ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@54.197.16.41 << 'EOF'
+          cd ~/my-node-app       # <-- yeh path aapke project ke hisaab se set karein
+          git pull origin main
+          npm install
+          pm2 restart all || pm2 start index.js --name "myapp"
           EOF
+      env:
+        EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          
