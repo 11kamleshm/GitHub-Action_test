@@ -1,0 +1,30 @@
+name : Deploy on EC2 instance[Kamlesh Github Action]
+on :
+  push :
+    branches:
+    - main
+
+jobs:
+  build-deploy:
+    runs-on : Ubuntu:latest
+
+    steps :
+    - name : Checkout
+      uses : actions/checkout@v1
+
+    - name: Setup SSH Key
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+    - name : Copy project file on EC2
+      run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
+            rm -rf my-node-app
+            git clone https://github.com/11kamleshm/Kamlesh_Task1.git my-node-app
+            cd my-node-app
+            npm install
+            pm2 kill || true
+            pm2 start app.js --name my-node-app -- run preview
+            pm2 save
+          EOF
