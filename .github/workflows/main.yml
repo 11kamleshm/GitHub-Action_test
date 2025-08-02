@@ -25,6 +25,6 @@ jobs:
             cd my-node-app
             npm install
             pm2 kill || true
-            pm2 start app.js --name my-node-app -- run preview
+            pm2 start app.js --name my-node-app --run preview
             pm2 save
           EOF
