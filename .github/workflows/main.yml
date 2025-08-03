@@ -26,6 +26,7 @@ jobs:
           git pull origin main
           # curl -fsSl https://rpm.nodesource.com/setup_18.x 
           # sudo yum install -y nodejs
+          cd ~/my-node-app
           npm install 
           pm2 start app.js && pm2 save && pm2 startup
           EOF
