@@ -27,7 +27,7 @@ jobs:
           # curl -fsSl https://rpm.nodesource.com/setup_18.x 
           # sudo yum install -y nodejs
           npm install 
-          pm2 restart all || pm2 start index.js --name "myapp"
+          pm2 start app.js && pm2 save && pm2 startup
           EOF
       env:
         EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
