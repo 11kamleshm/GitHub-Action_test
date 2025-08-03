@@ -28,7 +28,7 @@ jobs:
           # sudo yum install -y nodejs
           cd ~/my-node-app
           npm install 
-          pm2 start app.js && pm2 save && pm2 startup
+          pm2 restart all || pm2 start index.js --name "myapp"
           EOF
       env:
         EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
