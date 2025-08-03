@@ -7,7 +7,7 @@ on :
 jobs:
   build-deploy:
     runs-on : Ubuntu-latest
-
+ 
     steps :
     - name : Checkout
       uses : actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@54.197.16.41 << 'EOF'
           cd ~/my-node-app       # <-- yeh path aapke project ke hisaab se set karein
           git pull origin main
-          npm install
+          npm install 
           pm2 restart all || pm2 start index.js --name "myapp"
           EOF
       env:
