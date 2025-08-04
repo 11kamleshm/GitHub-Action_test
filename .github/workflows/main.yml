@@ -27,6 +27,6 @@ jobs:
           sudo npm install
           sudo npm run build
           sudo pm2 start npm --name Shopify --start
-    EOF 
+          EOF 
       env:
         EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
