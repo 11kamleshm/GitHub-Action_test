@@ -19,14 +19,10 @@ jobs:
     - name : Copy project file on EC2
       run: |
           echo "$EC2_SSH_KEY" > ec2_key.pem
-          chmod 600 ec2_key.pem 
+          chmod 777 ec2_key.pem 
           ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-          # sudo yum install git -y
-          cd ~/my-node-app       # <-- yeh path aapke project ke hisaab se set karein
+          cd /home/ubuntu/GitHub-Action_test/
           git pull origin main
-          # curl -fsSl https://rpm.nodesource.com/setup_18.x 
-          # sudo yum install -y nodejs
-          cd ~/my-node-app
           npm install 
           pm2 restart all || pm2 start index.js --name "myapp"
           EOF 
