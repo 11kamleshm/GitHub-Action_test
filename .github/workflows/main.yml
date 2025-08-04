@@ -29,6 +29,6 @@ jobs:
           cd ~/my-node-app
           npm install 
           pm2 restart all || pm2 start index.js --name "myapp"
-          EOF
+          EOF 
       env:
         EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
