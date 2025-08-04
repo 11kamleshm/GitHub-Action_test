@@ -23,8 +23,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ubuntu/GitHub-Action_test/     
           git pull origin main
-          npm install
-          npm run build
-          pm2 delete next-app
-          pm2 start npm --name "next-app" -- run start
+          sudo npm install
+          sudo npm run build
+          sudo pm2 delete next-app
+          sudo pm2 start npm --name "next-app" -- run start
           EOF
