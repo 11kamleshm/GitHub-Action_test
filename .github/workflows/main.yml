@@ -21,10 +21,12 @@ jobs:
           echo "$EC2_SSH_KEY" > ec2_key.pem
           chmod 777 ec2_key.pem 
           ssh -o StrictHostKeyChecking=no -i ec2_key.pem ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /home/ubuntu/GitHub-Action_test/
-          git pull origin main
-          npm install 
-          pm2 restart all || pm2 start index.js --name "myapp"
+          cd /home/ubuntu/GitHub-Action_test/Shopify
+          sudo git remote set-url origin https://11kamleshm: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@github.com:11kamleshm/GitHub-Action_test.git
+          sudo git pull origin main
+          sudo npm install
+          sudo npm run build
+          sudo pm2 start npm --name Shopify --start
           EOF 
       env:
         EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
