@@ -1,0 +1,30 @@
+name: Deploy Node.js App AI to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Add SSH Key for EC2
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY_AI }}
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST_AI }} << 'EOF'
+          cd /home/ubuntu/GitHub-Action_test/AI  
+          git pull origin main
+          sudo npm install
+          sudo npm run build
+          sudo pm2 delete next-app
+          sudo pm2 start npm --name "next-app" -- run start
+          EOF
