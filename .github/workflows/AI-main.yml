@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST_AI }} << 'EOF'
+          ssh -t -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST_AI }} << 'EOF'
           cd /home/ubuntu/GitHub-Action_test/AI
           git pull origin main
           sudo npm install
