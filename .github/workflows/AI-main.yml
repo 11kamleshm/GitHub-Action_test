@@ -1,4 +1,5 @@
 name: Deploy Node.js App AI to EC2
+
 on:
   push:
     branches:
