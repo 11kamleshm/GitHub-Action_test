@@ -28,3 +28,4 @@ jobs:
           PORT=3000 pm2 start npm --name "next-app" -- run start
           pm2 save
           EOF
+
