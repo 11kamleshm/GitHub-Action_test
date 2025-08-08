@@ -16,11 +16,11 @@ jobs:
       - name: Add SSH Key for EC2
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.EC2_SSH_KEY_AI }}
+          ssh-private-key: ${{ secrets.SSH_KEY_AI }}
 
       - name: Deploy to EC2
         run: |
-          ssh -t -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST_AI }} << 'EOF'
+          ssh -t -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ubuntu/GitHub-Action_test/AI
           git pull origin main
           sudo npm install
