@@ -28,4 +28,4 @@ jobs:
           pm2 stop ai-app || true
           PORT=4002 pm2 start npm --name "ai-app" -- run start
           pm2 save
-    EOF
+          EOF
