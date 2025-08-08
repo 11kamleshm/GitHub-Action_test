@@ -24,8 +24,6 @@ jobs:
           git pull origin main
           npm install
           npm run build
-          pm2 stop next-app || true
-          PORT=3000 pm2 start npm --name "next-app" -- run start
+          pm2 restart all --name "Shopify" -- run start
           pm2 save
           EOF
-
