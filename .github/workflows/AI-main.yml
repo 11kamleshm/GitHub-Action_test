@@ -26,6 +26,6 @@ jobs:
           npm install
           npm run build
           pm2 stop ai-app || true
-          PORT=4002 pm2 start npm --name "ai-app" -- run start
+          PORT=4000 pm2 start npm --name "ai-app" -- run start
           pm2 save
           EOF
