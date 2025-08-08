@@ -25,6 +25,6 @@ jobs:
           npm install
           npm run build
           pm2 stop next-app || true
-          PORT=4001 pm2 start npm --name "next-app" -- run start
+          PORT=3000 pm2 start npm --name "next-app" -- run start
           pm2 save
           EOF
