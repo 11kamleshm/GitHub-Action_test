@@ -16,7 +16,7 @@ jobs:
       - name: Add SSH Key for EC2
         uses: webfactory/ssh-agent@v0.9.0
         with: 
-          ssh-private-key: ${{ secrets.EC2_SSH_KEY1 }}
+          ssh-private-key: ${{ secrets.Private_Key }}
 
       - name: Deploy to EC2
         run: |
