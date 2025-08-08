@@ -1,5 +1,5 @@
 name: Deploy AI App to EC2
-
+ 
 on:
   push:
     branches:
